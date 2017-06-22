@@ -38,8 +38,18 @@ const App = {
       this.player = "X";
     }
   },
+  resetGrid: function(){
+    this.makeGrid();
+    this.render();
+  },
   render: function(){
     this.gridOutput.innerHTML = '';
+    // reset button
+    const resetBtn = document.createElement('button');
+    resetBtn.addEventListener('click', () => this.resetGrid());
+    resetBtn.innerHTML = "Reset";
+    resetBtn.classList.add = ('reset');
+    this.gridOutput.appendChild(resetBtn);
     this.grid.forEach((row, rowIndex) => {
       const rowContainer = document.createElement('div');
       rowContainer.style.height = `${this.cellHeight}px`;
