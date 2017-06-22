@@ -6,7 +6,7 @@ const App = {
   cellWidth : 100,
   cellHeight: 100,
   grid: [],
-  playerOne: true,
+  player: "X",
   start: function(){
     this.cacheDOM();
     this.makeGrid();
@@ -25,7 +25,19 @@ const App = {
       }
     }
   },
-  // bindEvents: function(){},
+  playerPlays: function(rowIndex, colIndex){
+    const cell = this.grid[rowIndex][colIndex];
+    cell.text = this.player;
+    this.changePlayer();
+    this.render();
+  },
+  changePlayer: function(){
+    if(this.player === "X") {
+      this.player = "O";
+    } else {
+      this.player = "X";
+    }
+  },
   render: function(){
     this.gridOutput.innerHTML = '';
     this.grid.forEach((row, rowIndex) => {
@@ -33,6 +45,7 @@ const App = {
       rowContainer.style.height = `${this.cellHeight}px`;
       row.forEach((cell, colIndex)=> {
         const element = cell.toHtml();
+        element.addEventListener('click', () => this.playerPlays(rowIndex, colIndex));
         rowContainer.appendChild(element);
       });
       this.gridOutput.appendChild(rowContainer);
