@@ -1,3 +1,54 @@
 body {
-  background-color: hotpink;
+  background-color: #fff;
+  display: block;
+  font-size: 2em;
+  margin: 16px 32px 16px 32px;
+  font-weight: bold;
+}
+
+div {
+  text-align: center;
+  margin: 0px auto;
+}
+
+.cell {
+  font-size: 66pt;
+  font-family: Garamond;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+}
+
+div.cell:hover {
+  background-color: #a4e5b6;
+}
+
+.header h1 {
+  font-family: 'Shadows Into Light';
+  color: #a4e5b6;
+  font-weight: bold;
+  font-size: 80px;
+  text-align: center;
+  margin: auto;
+}
+
+.reset {
+  text-align: center;
+  position: absolute;
+  bottom: 220px;
+  left: 47%
+}
+
+.reset:hover {
+  background-color: #a4e5b6
+}
+
+div.cell:active{
+  background-color: #a4e5b6;
+}
+
+.grid-output {
+  position: absolute;
+  top: 150px;
+  left: 40%;
 }
