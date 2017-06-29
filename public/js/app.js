@@ -1,6 +1,7 @@
 /*jshint esversion:6*/
 const App = {
   rootElement: '#app',
+  newColor: '#a4e5b6',
   numRows: 3,
   numCols: 3,
   cellWidth : 100,
@@ -14,7 +15,8 @@ const App = {
   },
   cacheDOM: function(){
     this.root = document.querySelector(this.rootElement);
-    this.gridOutput = document.querySelector('.grid-output');
+    this.gridOutput = this.root.querySelector('.grid-output');
+    this.controls = this.root.querySelector('.controls');
   },
   makeGrid: function(){
     this.grid = new Array(this.numRows);
@@ -28,6 +30,7 @@ const App = {
   playerPlays: function(rowIndex, colIndex){
     const cell = this.grid[rowIndex][colIndex];
     cell.text = this.player;
+    cell.color = this.newColor;
     this.changePlayer();
     this.render();
   },
@@ -39,20 +42,23 @@ const App = {
     }
   },
   resetGrid: function(){
+    this.player = "X";
     this.makeGrid();
     this.render();
   },
   render: function(){
     this.gridOutput.innerHTML = '';
+    this.controls.innerHTML = '';
     // reset button
     const resetBtn = document.createElement('button');
     resetBtn.addEventListener('click', () => this.resetGrid());
-    resetBtn.innerHTML = "Reset";
-    resetBtn.classList.add = ('reset');
-    this.gridOutput.appendChild(resetBtn);
+    resetBtn.innerHTML = "Restart Game";
+    resetBtn.className = ('reset');
+    this.controls.appendChild(resetBtn);
+    // render div
     this.grid.forEach((row, rowIndex) => {
       const rowContainer = document.createElement('div');
-      rowContainer.style.height = `${this.cellHeight}px`;
+      // rowContainer.style.height = `${this.cellHeight}px`;
       row.forEach((cell, colIndex)=> {
         const element = cell.toHtml();
         element.addEventListener('click', () => this.playerPlays(rowIndex, colIndex));
